@@ -103,5 +103,5 @@ const movies = [
 ]
 // let a = [ 10, 20, 30, 123, "Test" ]
 for(let i = 0; i < movies.length; i++){
-    console.log(movies[i].Title)
+    console.log(movies[i].Title, movies[i].Poster)
 }
