@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        img {
+            width: 200px;
+            object-fit: contain;
+            border-radius: 5px;
+            border-color: 2px solid black;
+        }
+    </style>
+</head>
+<body>
+    <input type="text" id="taskName">
+    <button onclick="addTask()">Add</button>
+    <button onclick="loadBooks()">Load Books</button>
+
+    <h2>My Tasks</h2>
+    <ul id="myTaskList">
+
+    </ul>
+
+    <div id="books"></div>
+
+    <script>
+        function addTask(){
+            let newTask = document.querySelector("#taskName").value
+            let list = document.querySelector("#myTaskList")
+
+            list.innerHTML += "<li>" + newTask + "</li>"
+
+        }
+
+        async function loadBooks() {
+            const resp = await fetch("https://striveschool-api.herokuapp.com/books")
+            const books = await resp.json()
+
+            console.log(books)
+
+            let container = document.querySelector("#books")
+
+            for (let i = 0; i < books.length; i++){
+                container.innerHTML += `<img src="${books[i].img}"  />`
+            }
+        }
+    </script>
+</body>
+</html>
